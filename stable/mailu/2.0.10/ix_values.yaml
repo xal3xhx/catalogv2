@@ -1,0 +1,72 @@
+env: {}
+#front : nginx
+image:
+  repository: ghcr.io/mailu/nginx
+  tag: 2.0.4@sha256:610ce579b002c5afd7d77e12aec1b8004ccdcc5ed7069f8f625a9c79f017f66e
+
+#redis
+redis:
+  repository: bitnami/redis
+  tag: 7.0.10@sha256:42711478d2af821f9ef102112be9cd991351ee17b1f385e4eb60a2779945bc6e
+
+#admin
+admin: 
+  repository: ghcr.io/mailu/admin
+  tag: 2.0.4@sha256:561cbf6e094dffb18ba8914294a8b60494139ed3a2fb4f36c35fef971bb0da43
+
+#imap
+dovecot: 
+  repository: ghcr.io/mailu/dovecot
+  tag: 2.0.4@sha256:3596ba59a7181f10310136a898e09ce559bb2bc0304b102c98b53248183858e8
+
+#smtp
+postfix:
+  repository: ghcr.io/mailu/postfix
+  tag: 2.0.4@sha256:9dadc6cba054f01c61e003613101d9539fa3b7d1a5df89b48bed31a73447ed53
+
+#oletools
+oletools:
+  repository: ghcr.io/mailu/oletools
+  tag: 2.0.4@sha256:14e4d93360507f67fd43f86bc453fd60a6e7118983f46dd07ed0044d679d07f0
+
+#antispam
+rspamd:
+  repository: ghcr.io/mailu/rspamd
+  tag: 2.0.4@sha256:204b5469e1e2cb4a4070433628442469e755e454f968ac108841d27fddba6019
+
+#antivirus
+clamav:
+  repository: ghcr.io/mailu/clamav
+  tag: 2.0.4@sha256:900d313a659724d6d810994c0eb195256cfbeaa8269674c7e28a2ce0e28e93e5
+
+#fetchmail
+fetchmail:
+  repository: ghcr.io/mailu/fetchmail
+  tag: 2.0.4@sha256:a977ec8c3f073d84e43415f8cab35236eb6dbac615621c1108dfe048cc3d3f9b
+
+#webmail
+webmail:
+  repository: ghcr.io/mailu/webmail
+  tag: 2.0.4@sha256:df921362192a7b2145cb0664df0a31facef80286f080a8c81ad8ff3536c1afeb
+
+persistence:
+  data:
+    enabled: true
+    mountPath: /data
+
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+
+main:
+    ports:
+      main:
+        port: 8280
+        protocol: HTTP
+        targetPort: 80
+
+portal:
+  enabled: true
